@@ -1,15 +1,16 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+const repoName = "projeto-aprender-libras";
+
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  output: "export",
+  basePath: isProd ? `/${repoName}` : "",
+  assetPrefix: isProd ? `/${repoName}/` : "",
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-      },
-    ],
+    unoptimized: true,
   },
+  trailingSlash: true,
 };
 
 export default nextConfig;
